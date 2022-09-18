@@ -45,7 +45,6 @@ jobs:
         with:
           context: ScalableHelloWorld
           file: Dockerfile.gcp-cloud-run
-          platforms: linux/arm64
           push: true
           tags: |
             asia.gcr.io/poc-general/scalable-hello-world-csharp:latest
