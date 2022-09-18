@@ -40,14 +40,13 @@ jobs:
           username: _json_key
           password: ${{ secrets.GCP_CREDENTIAL }}
 
-#
-#      - name: Build and Push Docker Image
-#        uses: docker/build-push-action@v3
-#        with:
-#          context: ScalableHelloWorld
-#          file: Dockerfile.gcp-cloud-run
-#          platforms: linux/arm64
-#          push: true
-#          tags: |
-#            asia.gcr.io/poc-general/scalable-hello-world-csharp:latest
-#            asia.gcr.io/poc-general/scalable-hello-world-csharp:${{github.ref}}
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v3
+        with:
+          context: ScalableHelloWorld
+          file: Dockerfile.gcp-cloud-run
+          platforms: linux/arm64
+          push: true
+          tags: |
+            asia.gcr.io/poc-general/scalable-hello-world-csharp:latest
+            asia.gcr.io/poc-general/scalable-hello-world-csharp:${{github.ref}}
