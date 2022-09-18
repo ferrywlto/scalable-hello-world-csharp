@@ -1,0 +1,15 @@
+# Using 6.0-alpine let Docker determine the architecture.
+# You cannot use 6.0-alpine-amd64 on ARM build machine
+# or 6.0-alpine-arm64 on x64 build machine, vice versa.
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as builder
+WORKDIR /app
+COPY ScalableHelloWorld.csproj .
+RUN dotnet restore -r linux-musl-x64
+COPY . .
+RUN dotnet publish -c release -r linux-musl-x64 -o /out --no-self-contained --no-restore
+
+# Google Cloud Run is on x64 architecture 
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine-amd64 as base
+COPY --from=builder /out /app
+ENV ASPNETCORE_URLS=http://*:80;
+ENTRYPOINT ["dotnet", "/app/ScalableHelloWorld.dll"]

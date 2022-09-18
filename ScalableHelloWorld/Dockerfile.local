@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine as builder
+WORKDIR /app
+COPY ScalableHelloWorld.csproj .
+RUN dotnet restore
+COPY . .
+RUN dotnet publish -c release -o /out --no-self-contained --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine as base
+COPY --from=builder /out /app
+ENV ASPNETCORE_URLS=http://*:80;
+ENTRYPOINT ["dotnet", "/app/ScalableHelloWorld.dll"]

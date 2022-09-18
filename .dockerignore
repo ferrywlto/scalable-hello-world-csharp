@@ -1,7 +1,0 @@
-obj
-bin
-.gitignore
-.git
-appsettings.Development.json
-Dockerfile
-Properties
