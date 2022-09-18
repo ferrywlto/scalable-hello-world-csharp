@@ -44,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ScalableHelloWorld
-          file: Dockerfile.gcp-cloud-run
+          file: ScalableHelloWorld/Dockerfile.gcp-cloud-run
           push: true
           tags: |
             asia.gcr.io/poc-general/scalable-hello-world-csharp:latest
