@@ -48,4 +48,4 @@ jobs:
           push: true
           tags: |
             asia.gcr.io/poc-general/scalable-hello-world-csharp:latest
-            asia.gcr.io/poc-general/scalable-hello-world-csharp:${{github.ref}}
+            asia.gcr.io/poc-general/scalable-hello-world-csharp:${{github.ref_name}}
